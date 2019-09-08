@@ -191,6 +191,10 @@ rm -rf $ME/.config/alacritty > /dev/null 2>&1 \
     && ln -s $ME/dotfiles/alacritty $ME/.config/. \
     || ln -s $ME/dotfiles/alacritty $ME/.config/.
 
+rm -rf $ME/.config/dunst > /dev/null 2>&1 \
+    && ln -s $ME/dotfiles/dunst $ME/.config/. \
+    || ln -s $ME/dotfiles/dunst $ME/.config/.
+
 sudo npm install -g neovim
 yay
 # yay -S ttf-unifont
