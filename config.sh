@@ -80,6 +80,12 @@ else
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 fi
 
+if [[ -f $ME/.gem/ruby/2.6.0/bin/neovim-ruby-host ]]; then
+    echo "neovim-ruby-host already installed."
+else
+    gem install neovim
+fi
+
 source ~/.bashrc
 
 if $(cat /etc/vimrc | grep --quiet "let g:powerline_pycmd = 'py3'"); then
