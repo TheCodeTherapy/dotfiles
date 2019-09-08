@@ -1,0 +1,22 @@
+
+┌────────────────────────────────┐ ┌──────────────────────────────────┐
+│ Panes ( splits )               │ │ Windows ( tabs )                 │
+├───┬───┬────────────────────────┤ ├───┬─────┬────────────────────────┤
+│ ▒ │ | │ split vertically       │ │ ▒ │  c  │ create window          │
+│ ▒ │ _ │ split horizontally     │ │ ▒ │  w  │ list windows           │
+├───┼───┼────────────────────────┤ ├───┼─────┼────────────────────────┤
+│ ▒ │ x │ kill pane              │ │ ▒ │  X  │ kill window            │
+├───┼───┼────────────────────────┤ ├───┼─────┼────────────────────────┤
+│ ▒ │ [ │ select previous pane   │ │ ▒ │ C-[ │ select previous window │
+│ ▒ │ ] │ select next pane       │ │ ▒ │ C-] │ select next window     │
+├───┼───┼────────────────────────┤ ├───┼─────┼────────────────────────┤
+│ ▒ │ ↑ │ select upper pane      │ │ ▒ │ C-x │ kill all other windows │
+│ ▒ │ ↓ │ select lower pane      │ └───┴─────┴────────────────────────┘
+│ ▒ │ ← │ select left pane       │
+│ ▒ │ → │ select right pane      │
+├───┼───┼────────────────────────┤
+│ ▒ │ \ │ swap with last pane    │
+│ ▒ │ = │ swap through all panes │
+└───┴───┴────────────────────────┘
+
+

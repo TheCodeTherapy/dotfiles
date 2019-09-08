@@ -1,0 +1,7 @@
+#
+# ~/.bash_profile
+#
+
+export TERMINAL="alacritty"
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc

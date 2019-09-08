@@ -1,0 +1,2 @@
+#!/bin/bash
+youtube-dl --cookies ~/videos/dev/lynda_cookies.txt $1 -o "./%(playlist)s/%(autonumber)03d-%(chapter_number)s-%(chapter)s-%(title)s.%(ext)s"

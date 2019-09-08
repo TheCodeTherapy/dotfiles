@@ -1,0 +1,3 @@
+#!/bin/bash
+dmenu_run -h 27 -x 0 -y 0 -w 1920 -nb '#212121' -nf '#c0d8c0' -sb '#90a890' -sf '#ffffff' -fn 'Ubuntu-9'
+

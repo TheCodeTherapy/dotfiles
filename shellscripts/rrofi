@@ -1,0 +1,1 @@
+rofi -show run -line 3 -eh 2 -width 70 -padding 100 -opacity "80" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -font "Ubuntu 11"

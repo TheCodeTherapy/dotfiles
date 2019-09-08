@@ -1,0 +1,2 @@
+#!/bin/bash
+youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --retries 'infinite' --merge-output-format mp4 $1 -o "./%(autonumber)03d-%(title)s.%(ext)s"

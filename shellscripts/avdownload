@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/videos/music
+V=$(greenclip print | grep youtube.com | rofi -dmenu) && vdownload $V
+
