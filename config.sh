@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     exa ripgrep bat fd tumbler ffmpegthumbnailer exfat-utils alsa-utils \
     clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
-    xclip
+    xclip libnotify
 
 sudo updatedb
 
@@ -196,8 +196,10 @@ rm -rf $ME/.config/dunst > /dev/null 2>&1 \
     || ln -s $ME/dotfiles/dunst $ME/.config/.
 
 sudo npm install -g neovim
-yay
-# yay -S ttf-unifont
-# yay -S chromium-widevine
-# yay -S --noconfirm spotify ffmpeg-compat-57 zenity
+
+if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
+    echo "Extra packages already installed."
+else
+    yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
+fi
 
