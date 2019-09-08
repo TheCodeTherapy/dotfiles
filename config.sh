@@ -11,7 +11,8 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     freetype2 ttf-font-awesome ttf-ubuntu-font-family dnsutils python2-pip \
     exa ripgrep bat fd tumbler ffmpegthumbnailer exfat-utils alsa-utils \
     clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
-    neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs
+    neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
+    xclip
 
 sudo updatedb
 
@@ -191,6 +192,7 @@ rm -rf $ME/.config/alacritty > /dev/null 2>&1 \
     || ln -s $ME/dotfiles/alacritty $ME/.config/.
 
 sudo npm install -g neovim
+yay
 # yay -S ttf-unifont
 # yay -S chromium-widevine
 # yay -S --noconfirm spotify ffmpeg-compat-57 zenity
