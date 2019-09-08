@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     exa ripgrep bat fd tumbler ffmpegthumbnailer exfat-utils alsa-utils \
     clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
-    xclip libnotify network-manager-applet ruby rubygems
+    xclip libnotify network-manager-applet ruby rubygems discord
 
 sudo updatedb
 
