@@ -1,2 +1,0 @@
-#!/bin/bash
-youtube-dl -u contato@marcogomez.com.br -p batatafrita123 -o "./%(playlist)s/%(chapter_number)s-%(chapter)s/%(autonumber)03d-%(title)s.%(ext)s" --playlist-start $2 --playlist-end $3 $1
