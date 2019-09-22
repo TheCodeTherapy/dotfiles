@@ -13,7 +13,8 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
     xclip libnotify network-manager-applet ruby rubygems discord \
-    xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra
+    xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
+    libreoffice-fresh
 
 sudo updatedb
 
