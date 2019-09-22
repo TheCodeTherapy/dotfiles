@@ -19,6 +19,8 @@ sudo updatedb
 
 sudo usermod -a -G docker $USER
 
+sudo cp ./wallpapers/abstract-shaping-1920x1080.jpg /usr/share/pixmaps/back.jpg
+
 systemctl --user enable pulseaudio
 
 if [ -d "$ME/.mpd" ]; then
