@@ -199,6 +199,7 @@ rm -rf $ME/.config/dunst > /dev/null 2>&1 \
     && ln -s $ME/dotfiles/dunst $ME/.config/. \
     || ln -s $ME/dotfiles/dunst $ME/.config/.
 
+sudo npm install -g npm
 sudo npm install -g neovim
 
 if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
