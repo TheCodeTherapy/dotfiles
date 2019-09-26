@@ -14,9 +14,12 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
-    libreoffice-fresh
+    libreoffice-fresh ntp
 
 sudo updatedb
+
+sudo systemctl enable ntpd.service
+sudo ntpd -u ntp:ntp
 
 sudo usermod -a -G docker $USER
 
