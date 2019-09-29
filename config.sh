@@ -14,7 +14,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
-    libreoffice-fresh ntp
+    libreoffice-fresh ntp perl-json-xs
 
 sudo updatedb
 
@@ -210,4 +210,6 @@ if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
 else
     yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
 fi
+
+yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3
 
