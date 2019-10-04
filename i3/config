@@ -190,4 +190,5 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id feh --bg-fil ~/dotfiles/wallpapers/abstract-shaping-2560x1440.jpg
 exec --no-startup-id i3-msg 'workspace 10; exec skypeforlinux; exec discord'
 exec --no-startup-id nm-applet
+bindsym Print exec --no-startup-id xfce4-screenshooter
 
