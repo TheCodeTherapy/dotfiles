@@ -1,5 +1,18 @@
 #!/bin/bash
 ME="/home/$(whoami)"
+CFG="$ME/.config"
+
+home_link () {
+    rm $ME/$2 > /dev/null 2>&1 \
+        && ln -s $ME/dotfiles/$1 $ME/$2 \
+        || ln -s $ME/dotfiles/$1 $ME/$2 
+}
+
+home_link_cfg () {
+    rm -rf $CFG/$1 > /dev/null 2>&1 \
+        && ln -s $ME/dotfiles/$1 $CFG/. \
+        || ln -s $ME/dotfiles/$1 $CFG/.
+}
 
 sudo pacman -Syu
 
@@ -14,7 +27,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
-    libreoffice-fresh ntp perl-json-xs
+    libreoffice-fresh ntp perl-json-xs imagemagick
 
 sudo updatedb
 
@@ -126,81 +139,34 @@ sudo -H pip install --upgrade youtube-dl
 
 mkdir ~/music > /dev/null 2>&1
 
-rm -rf $ME/.config/i3 > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/i3 $ME/.config/. \
-    || ln -s $ME/dotfiles/i3 $ME/.config/.
-
-rm -rf $ME/.config/i3status > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/i3status $ME/.config/. \
-    || ln -s $ME/dotfiles/i3status $ME/.config/.
-
 sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
     < /usr/share/X11/locale/en_US.UTF-8/Compose \
     > $ME/dotfiles/x/XCompose
 
-rm $ME/.XCompose > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/x/XCompose $ME/.XCompose \
-    || ln -s $ME/dotfiles/x/XCompose $ME/.XCompose
+home_link "bash/profile" ".profile"
+home_link "bash/bashrc" ".bashrc"
+home_link "bash/inputrc" ".inputrc"
+home_link "bash/bash_profile" ".bash_profile"
 
-rm $ME/.XResources > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/x/XResources $ME/.XResources \
-    || ln -s $ME/dotfiles/x/XResources $ME/.XResources
+home_link "x/xprofile" ".xprofile"
+home_link "x/XResources" ".XResources"
+home_link "x/XCompose" ".XCompose"
 
-rm $ME/.bash_profile > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/bash/bash_profile $ME/.bash_profile \
-    || ln -s $ME/dotfiles/bash/bash_profile $ME/.bash_profile
+home_link "tmux/tmux.conf" ".tmux.conf"
 
-rm $ME/.bashrc > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/bash/bashrc $ME/.bashrc \
-    || ln -s $ME/dotfiles/bash/bashrc $ME/.bashrc
-
-rm $ME/.inputrc > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/bash/inputrc $ME/.inputrc \
-    || ln -s $ME/dotfiles/bash/inputrc $ME/.inputrc
-
-rm $ME/.tmux.conf > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/tmux/tmux.conf $ME/.tmux.conf \
-    || ln -s $ME/dotfiles/tmux/tmux.conf $ME/.tmux.conf
-
-rm $ME/.profile > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/bash/profile $ME/.profile \
-    || ln -s $ME/dotfiles/bash/profile $ME/.profile
-
-rm $ME/.xprofile > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/x/xprofile $ME/.xprofile \
-    || ln -s $ME/dotfiles/x/xprofile $ME/.xprofile
-
-rm -rf $ME/.config/nvim > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/nvim $ME/.config/. \
-    || ln -s $ME/dotfiles/nvim $ME/.config/.
-
-rm -rf $ME/.config/powerline > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/powerline $ME/.config/. \
-    || ln -s $ME/dotfiles/powerline $ME/.config/.
-
-rm -rf $ME/.config/rofi > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/rofi $ME/.config/. \
-    || ln -s $ME/dotfiles/rofi $ME/.config/.
+home_link_cfg "i3"
+home_link_cfg "i3status"
+home_link_cfg "alacritty"
+home_link_cfg "nvim"
+home_link_cfg "powerline"
+home_link_cfg "rofi"
+home_link_cfg "mpd"
+home_link_cfg "ncmpcpp"
+home_link_cfg "dunst"
 
 rm -rf $ME/.fonts > /dev/null 2>&1 \
     && ln -s $ME/dotfiles/fonts $ME/.fonts \
     || ln -s $ME/dotfiles/fonts $ME/.fonts
-
-rm -rf $ME/.config/mpd > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/mpd $ME/.config/. \
-    || ln -s $ME/dotfiles/mpd $ME/.config/.
-
-rm -rf $ME/.config/ncmpcpp > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/ncmpcpp $ME/.config/. \
-    || ln -s $ME/dotfiles/ncmpcpp $ME/.config/.
-
-rm -rf $ME/.config/alacritty > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/alacritty $ME/.config/. \
-    || ln -s $ME/dotfiles/alacritty $ME/.config/.
-
-rm -rf $ME/.config/dunst > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/dunst $ME/.config/. \
-    || ln -s $ME/dotfiles/dunst $ME/.config/.
 
 sudo npm install -g npm
 sudo npm install -g neovim
