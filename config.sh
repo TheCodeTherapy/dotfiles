@@ -27,7 +27,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
-    libreoffice-fresh ntp perl-json-xs imagemagick
+    libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter
 
 sudo updatedb
 
