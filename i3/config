@@ -191,4 +191,5 @@ exec --no-startup-id feh --bg-fil ~/dotfiles/wallpapers/abstract-shaping-2560x14
 exec --no-startup-id i3-msg 'workspace 10; exec skypeforlinux; exec discord'
 exec --no-startup-id nm-applet
 bindsym Print exec --no-startup-id xfce4-screenshooter
+bindsym --release $mod+x exec --no-startup-id import /tmp/latest-screenshot.png
 
