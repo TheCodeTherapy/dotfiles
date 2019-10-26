@@ -3,13 +3,13 @@ ME="/home/$(whoami)"
 CFG="$ME/.config"
 
 home_link () {
-    rm $ME/$2 > /dev/null 2>&1 \
+    sudo rm $ME/$2 > /dev/null 2>&1 \
         && ln -s $ME/dotfiles/$1 $ME/$2 \
         || ln -s $ME/dotfiles/$1 $ME/$2 
 }
 
 home_link_cfg () {
-    rm -rf $CFG/$1 > /dev/null 2>&1 \
+    sudo rm -rf $CFG/$1 > /dev/null 2>&1 \
         && ln -s $ME/dotfiles/$1 $CFG/. \
         || ln -s $ME/dotfiles/$1 $CFG/.
 }
@@ -155,6 +155,7 @@ home_link "bash/bashrc" ".bashrc"
 home_link "bash/inputrc" ".inputrc"
 home_link "bash/bash_profile" ".bash_profile"
 
+home_link "x/Xdefaults" ".Xdefaults"
 home_link "x/xprofile" ".xprofile"
 home_link "x/XResources" ".XResources"
 home_link "x/XCompose" ".XCompose"
