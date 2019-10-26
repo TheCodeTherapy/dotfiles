@@ -14,6 +14,22 @@ home_link_cfg () {
         || ln -s $ME/dotfiles/$1 $CFG/.
 }
 
+if $(yay --version > /dev/null 2>&1); then
+    yay -R yay
+    sudo pacman -Syu
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+else
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+fi
+
 sudo pacman -Syu
 
 sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
@@ -28,7 +44,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
     libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
-    obs-studio
+    obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua
 
 sudo updatedb
 
@@ -48,16 +64,6 @@ else
     mkdir $ME/.mpd
     echo "$ME/.mpd directory created"
     sudo systemctl enable mpd.service
-fi
-
-if $(yay --version > /dev/null 2>&1); then
-    echo "yay already installed."
-else
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
 fi
 
 if $(fc-list | grep "Siji:style=Regular" > /dev/null 2>&1); then
@@ -179,4 +185,6 @@ else
 fi
 
 yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3
+
+yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
 
