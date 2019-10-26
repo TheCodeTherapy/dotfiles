@@ -33,7 +33,18 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'mboughaba/i3config.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -44,15 +55,18 @@ Plug 'vim-airline/vim-airline-themes'
 " Completion =================================================================
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-cssomni' " CSS
-Plug 'ncm2/ncm2-vim' | Plug 'shougo/neco-vim' " VIML
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' } " Typescript
-Plug 'ncm2/ncm2-bufword' " words on buffer
-Plug 'ncm2/ncm2-path' " file path
-Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax' " Syntax-based completion
-Plug 'ncm2/ncm2-markdown-subscope' " Code blocks on markdown
-Plug 'ncm2/ncm2-html-subscope' " CSS/JS in HTML
-Plug 'fgrsnau/ncm2-aspell' " Dictionary based spell
+Plug 'ncm2/ncm2-cssomni'
+Plug 'ncm2/ncm2-vim'
+Plug 'shougo/neco-vim'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-syntax'
+Plug 'Shougo/neco-syntax'
+Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-html-subscope'
+Plug 'ncm2/ncm2-match-highlight'
+Plug 'fgrsnau/ncm2-aspell'
 " Snippets ===================================================================
 Plug 'ncm2/ncm2-neosnippet'
 " Text Editing ===============================================================
@@ -63,6 +77,7 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
+
 " ============================================================================
 call plug#end()
 " ============================================================================
@@ -154,3 +169,14 @@ augroup filetypes
 augroup END
 " ============================================================================
 
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+inoremap <leader>t <esc>:tabnext<CR>
+nnoremap <leader>t :tabnext<CR>
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+inoremap <c-c> <ESC>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

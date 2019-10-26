@@ -185,7 +185,7 @@ else
     yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
 fi
 
-yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3
+yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git
 
 yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
 
