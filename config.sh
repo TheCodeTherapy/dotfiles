@@ -44,7 +44,8 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     xclip libnotify network-manager-applet ruby rubygems discord \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
     libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
-    obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua
+    obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
+    xf86-video-intel nvidia mesa
 
 sudo updatedb
 
