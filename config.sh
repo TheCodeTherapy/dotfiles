@@ -45,7 +45,7 @@ sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
     libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
     obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
-    xf86-video-intel nvidia mesa
+    xf86-video-intel nvidia mesa peek
 
 sudo updatedb
 
@@ -186,7 +186,7 @@ else
     yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
 fi
 
-yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git
+yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git mongodb-bin mongodb-tools-bin
 
 yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
 
