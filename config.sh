@@ -5,7 +5,7 @@ CFG="$ME/.config"
 home_link () {
     sudo rm $ME/$2 > /dev/null 2>&1 \
         && ln -s $ME/dotfiles/$1 $ME/$2 \
-        || ln -s $ME/dotfiles/$1 $ME/$2 
+        || ln -s $ME/dotfiles/$1 $ME/$2
 }
 
 home_link_cfg () {
@@ -32,7 +32,7 @@ fi
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm --needed tmux powerline powerline-common \
+sudo pacman -S tmux powerline powerline-common \
     powerline-fonts alacritty alacritty-terminfo xorg-xprop python \
     python-pip ipython pulseaudio paprefs pavucontrol pulseaudio-alsa \
     base-devel git go gnome-keyring polkit-gnome mlocate most scrot \
@@ -188,5 +188,5 @@ fi
 
 yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git mongodb-bin mongodb-tools-bin
 
-yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
+# yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
 
