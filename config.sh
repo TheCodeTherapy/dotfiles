@@ -32,7 +32,7 @@ fi
 
 sudo pacman -Syu
 
-sudo pacman -S tmux powerline powerline-common \
+sudo pacman -S --needed tmux powerline powerline-common \
     powerline-fonts alacritty alacritty-terminfo xorg-xprop python \
     python-pip ipython pulseaudio paprefs pavucontrol pulseaudio-alsa \
     base-devel git go gnome-keyring polkit-gnome mlocate most scrot \

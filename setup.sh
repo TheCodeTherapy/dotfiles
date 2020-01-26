@@ -13,15 +13,14 @@ echo "exec i3" > /home/${muser}/.xinitrc && echo "tput bold" >> /home/${muser}/.
 echo "xrdb .Xdefaults" >> /home/${muser}/.bashrc
 echo "Success: user create and included on group sudo"
 
-pacman -S vim xorg-server xf86-input-mouse xf86-input-keyboard xf86-video-vesa xorg-xinit i3-wm i3status i3lock dmenu awesome-terminal-fonts terminus-font ttf-dejavu xterm git lightdm lightdm-gtk-greeter firefox firefox-i18n-pt-br bash-completion --noconfirm
+pacman -S vim xorg-server xf86-input-libinput xf86-input-synaptics xf86-video-vesa xorg-xinit i3-wm i3status i3lock dmenu awesome-terminal-fonts terminus-font ttf-dejavu xterm git lightdm lightdm-gtk-greeter firefox firefox-i18n-pt-br bash-completion --noconfirm
 
 pacman -S i3
 
 systemctl enable lightdm
 sed -i 's/^#greeter-session.*/greeter-session=lightdm-gtk-greeter/' /etc/lightdm/lightdm.conf
 sed -i '/^#greeter-hide-user=/s/#//' /etc/lightdm/lightdm.conf
-wget "$raw/wallpapers/abstract-shaping-1920x1080.jpg" -O /usr/share/pixmaps/back.jpg 2>/dev/null
+wget "$raw/wallpapers/abstract-blur-flare.jpg" -O /usr/share/pixmaps/back.jpg 2>/dev/null
 wget "$raw/x/xorg_conf/10-evdev.conf" -O /etc/X11/xorg.conf.d/10-evdev.conf 2>/dev/null
 wget "$raw/x/xorg_conf/70-synaptics.conf" -O /etc/X11/xorg.conf.d/70-synaptics.conf 2>/dev/null
 echo -e "[greeter]\nbackground=/usr/share/pixmaps/back.jpg" > /etc/lightdm/lightdm-gtk-greeter.conf
-
