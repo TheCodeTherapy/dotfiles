@@ -115,6 +115,12 @@ else
     gem install neovim
 fi
 
+if [[ -f /usr/bin/slack ]]; then
+    echo "Slack desktop already installed."
+else
+    yay slack-desktop
+fi
+
 source ~/.bashrc
 
 if $(cat /etc/vimrc | grep --quiet "let g:powerline_pycmd = 'py3'"); then
