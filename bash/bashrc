@@ -45,3 +45,5 @@ fi
 #fi
 neofetch
 
+
+source /home/marcogomez/.config/broot/launcher/bash/br

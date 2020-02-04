@@ -5,3 +5,5 @@
 export TERMINAL="alacritty"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+source /home/marcogomez/.config/broot/launcher/bash/br

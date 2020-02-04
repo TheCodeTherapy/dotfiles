@@ -45,7 +45,7 @@ sudo pacman -S --needed tmux powerline powerline-common \
     xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
     libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
     obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
-    xf86-video-intel nvidia mesa peek
+    xf86-video-intel nvidia mesa peek broot
 
 sudo updatedb
 
