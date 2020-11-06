@@ -1,53 +1,95 @@
 #!/bin/bash
+set -eu -o pipefail
+
 ME="/home/$(whoami)"
+DOTDIR="${ME}/dotfiles"
 CFG="$ME/.config"
+
+declare -rA COLORS=(
+    [RED]=$'\033[0;31m'
+    [GREEN]=$'\033[0;32m'
+    [BLUE]=$'\033[0;34m'
+    [PURPLE]=$'\033[0;35m'
+    [CYAN]=$'\033[0;36m'
+    [WHITE]=$'\033[0;37m'
+    [YELLOW]=$'\033[0;33m'
+    [BOLD]=$'\033[1m'
+    [OFF]=$'\033[0m'
+)
+
+print_green () {
+    echo -e "\n${COLORS[GREEN]}${1}${COLORS[OFF]}\n"
+}
+
+print_cyan () {
+    echo -e "\n${COLORS[CYAN]}${1}${COLORS[OFF]}\n"
+}
+
+wait_key () {
+    echo -e "\n${COLORS[YELLOW]}"
+    read -n 1 -s -r -p "${1}"
+    echo -e "${COLORS[OFF]}\n"
+}
 
 home_link () {
     sudo rm $ME/$2 > /dev/null 2>&1 \
-        && ln -s $ME/dotfiles/$1 $ME/$2 \
-        || ln -s $ME/dotfiles/$1 $ME/$2
+        && ln -s $DOTDIR/$1 $ME/$2 \
+        || ln -s $DOTDIR/$1 $ME/$2
 }
 
 home_link_cfg () {
     sudo rm -rf $CFG/$1 > /dev/null 2>&1 \
-        && ln -s $ME/dotfiles/$1 $CFG/. \
-        || ln -s $ME/dotfiles/$1 $CFG/.
+        && ln -s $DOTDIR/$1 $CFG/. \
+        || ln -s $DOTDIR/$1 $CFG/.
 }
 
-if $(yay --version > /dev/null 2>&1); then
-    yay -R yay
+install_yay () {
+    if $(yay --version > /dev/null 2>&1); then
+        yay -R yay
+        sudo pacman -Syu
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        rm -rf yay
+    else
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si
+        cd ..
+        rm -rf yay
+    fi
+}
+
+update_system () {
     sudo pacman -Syu
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
-else
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd ..
-    rm -rf yay
-fi
+}
 
-sudo pacman -Syu
+install_basic_packages () {
+    sudo pacman -S --needed tmux powerline powerline-common \
+        powerline-fonts alacritty xorg-xprop python \
+        python-pip ipython pulseaudio paprefs pavucontrol pulseaudio-alsa \
+        base-devel git go gnome-keyring polkit-gnome mlocate most scrot \
+        mesa-demos thunar thunar-volman gvfs ntfs-3g code vlc tree fftw \
+        freetype2 ttf-font-awesome ttf-ubuntu-font-family dnsutils \
+        exa ripgrep bat fd tumbler ffmpegthumbnailer exfat-utils alsa-utils \
+        clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
+        neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
+        xclip libnotify network-manager-applet ruby rubygems discord \
+        xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
+        libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
+        obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
+        xf86-video-intel nvidia mesa peek broot
+}
 
-sudo pacman -S --needed tmux powerline powerline-common \
-    powerline-fonts alacritty alacritty-terminfo xorg-xprop python \
-    python-pip ipython pulseaudio paprefs pavucontrol pulseaudio-alsa \
-    base-devel git go gnome-keyring polkit-gnome mlocate most scrot \
-    mesa-demos thunar thunar-volman gvfs ntfs-3g code vlc tree fftw \
-    freetype2 ttf-font-awesome ttf-ubuntu-font-family dnsutils python2-pip \
-    exa ripgrep bat fd tumbler ffmpegthumbnailer exfat-utils alsa-utils \
-    clang ctags chromium rofi mpd ncmpcpp uthash powertop htop unzip xz \
-    neofetch feh dunst docker docker-compose opera opera-ffmpeg-codecs \
-    xclip libnotify network-manager-applet ruby rubygems discord \
-    xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
-    libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
-    obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
-    xf86-video-intel nvidia mesa peek broot
+mlocate_update () {
+    sudo updatedb
+}
 
-sudo updatedb
+update_system
+install_basic_packages
+mlocate_update
+install_yay
 
 sudo systemctl enable ntpd.service
 sudo ntpd -u ntp:ntp
@@ -60,7 +102,7 @@ systemctl --user enable pulseaudio
 
 if [ -d "$ME/.mpd" ]; then
     # Take action if $DIR exists. #
-    echo ".mpd directory already exists in ${DIR}..."
+    echo ".mpd directory already exists in $ME/.mpd ..."
 else
     mkdir $ME/.mpd
     echo "$ME/.mpd directory created"
@@ -106,7 +148,7 @@ fi
 if [[ -f $ME/.nvm/nvm.sh ]]; then
     echo "nvm already installed."
 else
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
 fi
 
 if [[ -f $ME/.gem/ruby/2.6.0/bin/neovim-ruby-host ]]; then
@@ -131,22 +173,10 @@ else
         > /dev/null 2>&1
 fi
 
-if $(pip3 show pynvim > /dev/null 2>&1); then
+if $(pip show pynvim > /dev/null 2>&1); then
     echo "PyNvim installed for Python 3..."
 else
-    sudo pip3 install pynvim
-fi
-
-if $(pip2 show pynvim > /dev/null 2>&1); then
-    echo "PyNvim installed for Python 2..."
-else
-    sudo pip2 install pynvim
-fi
-
-if $(pip2 show neovim &> /dev/null); then
-    echo "neovim installed for Python2..."
-else
-    sudo pip2 install neovim
+    sudo pip install pynvim
 fi
 
 sudo -H pip install --upgrade youtube-dl
