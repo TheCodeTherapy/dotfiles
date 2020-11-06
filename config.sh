@@ -89,7 +89,7 @@ install_basic_packages () {
     print_yellow "${msg}"
     sleep 1
     sudo pacman -S --needed tmux powerline powerline-common \
-        powerline-fonts alacritty xorg-xprop python \
+        powerline-fonts alacritty xorg-xprop xorg-xrandr python \
         python-pip ipython pulseaudio paprefs pavucontrol pulseaudio-alsa \
         base-devel git go gnome-keyring polkit-gnome mlocate most scrot \
         mesa-demos thunar thunar-volman gvfs ntfs-3g code vlc tree fftw \
@@ -101,7 +101,7 @@ install_basic_packages () {
         xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
         libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
         obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
-        xf86-video-intel nvidia mesa peek broot
+        xf86-video-intel nvidia mesa peek broot xawtv mpv ttf-fira-code
 }
 
 link_dotfiles () {
@@ -126,6 +126,7 @@ link_dotfiles () {
     home_link_cfg "mpd"
     home_link_cfg "ncmpcpp"
     home_link_cfg "dunst"
+    home_link_cfg "polybar"
     sudo cp ${DOTDIR}/x/xorg.conf /etc/X11/xorg.conf
 }
 
@@ -240,6 +241,35 @@ configure_mpd () {
     fi
 }
 
+configure_broot () {
+    msg="SETTING UP BROOT ..."
+    print_yellow "${msg}"
+    sleep 1
+    if $(broot --version > /dev/null 2>&1); then
+        if [[ -f $CFG/broot/launcher/bash/br ]]; then
+            msg="broot already installed and configured."
+            print_green "${msg}"
+        else
+            msg="running broot --install"
+            print_yellow "${msg}"
+            sleep 1
+            broot --install
+        fi
+    else
+        print_red "[ERROR] broot not installed!"
+    fi
+}
+
+setup_fonts () {
+    msg="SETTING UP FONTS ..."
+    print_yellow "${msg}"
+    sleep 1
+    rm -rf $ME/.fonts > /dev/null 2>&1 \
+        && ln -s $ME/dotfiles/fonts $ME/.fonts \
+        || ln -s $ME/dotfiles/fonts $ME/.fonts
+    fc-cache -fv
+}
+
 update_system
 install_basic_packages
 link_dotfiles
@@ -252,7 +282,8 @@ install_google_chrome
 install_siji_font
 yay_installs
 configure_mpd
-
+configure_broot
+setup_fonts
 
 sudo usermod -a -G docker $USER
 
@@ -295,10 +326,6 @@ mkdir ~/music > /dev/null 2>&1
 sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
     < /usr/share/X11/locale/en_US.UTF-8/Compose \
     > $ME/dotfiles/x/XCompose
-
-rm -rf $ME/.fonts > /dev/null 2>&1 \
-    && ln -s $ME/dotfiles/fonts $ME/.fonts \
-    || ln -s $ME/dotfiles/fonts $ME/.fonts
 
 sudo npm install -g npm
 sudo npm install -g neovim

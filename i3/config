@@ -19,6 +19,8 @@ set $sup Mod1
 font pango:monospace 12
 
 for_window [class=".*"] border pixel 3
+for_window [title="video0 - mpv"] floating enable
+for_window [title="video0 - mpv"] sticky enable
 
 gaps inner 8
 gaps outer 8
@@ -125,6 +127,11 @@ bindsym $sup+Shift+4 move container to workspace $ws4
 # bindsym $sup+Shift+9 move container to workspace $ws9
 # bindsym $sup+Shift+0 move container to workspace $ws10
 
+workspace 1 output DP-0
+workspace 2 output DP-2
+workspace 3 output DP-4
+workspace 4 output HDMI-0
+
 # reload the configuration file
 bindsym $sup+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -185,15 +192,14 @@ bar {
     status_command i3status -c ~/.config/i3status/config
 }
 
-assign [class="Slack"] $ws10
+assign [class="Slack"] $ws3
 
 exec --no-startup-id /usr/bin/compton --config ~/dotfiles/compton/compton.conf
 exec --no-startup-id $HOME/dotfiles/polybar/launch.sh
 exec --no-startup-id greenclip daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 exec --no-startup-id feh --bg-fil ~/dotfiles/wallpapers/abstract-blur-flare.jpg
-# exec --no-startup-id i3-msg 'workspace 10:slack; exec slack'
-# exec --no-startup-id slack
+exec --no-startup-id slack
 exec --no-startup-id nm-applet
 # exec --no-startup-id optimus-manager-qt
 bindsym Print exec --no-startup-id xfce4-screenshooter
