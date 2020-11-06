@@ -16,7 +16,7 @@
 set $mod Mod4
 set $sup Mod1
 
-font pango:monospace 12
+font pango:Fira Code, Misc Termsyn, Wuncon Siji 12
 
 for_window [class=".*"] border pixel 3
 for_window [title="video0 - mpv"] floating enable
@@ -200,7 +200,7 @@ exec --no-startup-id /usr/bin/compton --config ~/dotfiles/compton/compton.conf
 exec --no-startup-id $HOME/dotfiles/polybar/launch.sh
 exec --no-startup-id greenclip daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
-exec --no-startup-id feh --bg-fil ~/dotfiles/wallpapers/abstract-blur-flare.jpg
+exec --no-startup-id feh --bg-scale --no-xinerama ~/dotfiles/wallpapers/forest-wallpapers.jpg
 exec --no-startup-id slack
 exec --no-startup-id nm-applet
 # exec --no-startup-id optimus-manager-qt
