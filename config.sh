@@ -209,6 +209,8 @@ home_link_cfg "mpd"
 home_link_cfg "ncmpcpp"
 home_link_cfg "dunst"
 
+sudo cp ${DOTDIR}/x/xorg.conf /etc/X11/xorg.conf
+
 rm -rf $ME/.fonts > /dev/null 2>&1 \
     && ln -s $ME/dotfiles/fonts $ME/.fonts \
     || ln -s $ME/dotfiles/fonts $ME/.fonts
