@@ -108,6 +108,7 @@ configure_xorg () {
     msg="CONFIGURING XORG ..."
     print_yellow "${msg}"
     sleep 1
+    sudo cp ./wallpapers/abstract-shaping-1920x1080.jpg /usr/share/pixmaps/back.jpg
     sudo cp ${DOTDIR}/x/xorg.conf /etc/X11/xorg.conf
     sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
         < /usr/share/X11/locale/en_US.UTF-8/Compose \
@@ -233,6 +234,63 @@ yay_installs () {
     install_with_yay "rofi-greenclip" "greenclip"
 }
 
+install_extras () {
+    msg="INSTALLING EXTRA PACKAGES ..."
+    print_yellow "${msg}"
+    sleep 1
+    if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
+        msg="extra packages already installed."
+        print_green "${msg}"
+    else
+        yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
+    fi
+    sleep 1
+    if $(mongodump --version > /dev/null 2>&1); then
+        msg="mongodb-tools already installed."
+        print_green "${msg}"
+    else
+        yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git mongodb-bin mongodb-tools-bin
+    fi
+}
+
+install_slack () {
+    msg="INSTALLING SLACK ..."
+    print_yellow "${msg}"
+    sleep 1
+    if [[ -f /usr/bin/slack ]]; then
+        print_green "slack desktop already installed."
+    else
+        yay slack-desktop
+    fi
+}
+
+install_neovim_deps () {
+    msg="INSTALLING NEOVIM DEPENDENCIES ..."
+    print_yellow "${msg}"
+    sleep 1
+    if [[ -f $ME/.gem/ruby/2.6.0/bin/neovim-ruby-host ]]; then
+        print_green "neovim-ruby-host already installed."
+    else
+        gem install neovim
+    fi
+    sleep 1
+    if $(cat /etc/vimrc | grep --quiet "let g:powerline_pycmd = 'py3'"); then
+        echo "powerline-vim already set to use Python3."
+    else
+        echo "setting powerline-vim to use Python3."
+        echo "let g:powerline_pycmd = 'py3'" | sudo tee -a /etc/vimrc \
+            > /dev/null 2>&1
+    fi
+    sleep 1
+    if $(pip show pynvim > /dev/null 2>&1); then
+        echo "PyNvim installed for Python 3..."
+    else
+        sudo pip install pynvim
+    fi
+    sleep 1
+    sudo npm install -g neovim
+}
+
 configure_mpd () {
     msg="SETTING UP MPD ..."
     print_yellow "${msg}"
@@ -292,57 +350,21 @@ install_node
 install_google_chrome
 install_siji_font
 yay_installs
+install_extras
+install_slack
+install_neovim_deps
 configure_mpd
 configure_broot
 setup_fonts
 
 sudo usermod -a -G docker $USER
 
-sudo cp ./wallpapers/abstract-shaping-1920x1080.jpg /usr/share/pixmaps/back.jpg
-
 systemctl --user enable pulseaudio
-
-if [[ -f $ME/.gem/ruby/2.6.0/bin/neovim-ruby-host ]]; then
-    print_green "neovim-ruby-host already installed."
-else
-    gem install neovim
-fi
-
-if [[ -f /usr/bin/slack ]]; then
-    print_green "Slack desktop already installed."
-else
-    yay slack-desktop
-fi
 
 source ~/.bashrc
 
-if $(cat /etc/vimrc | grep --quiet "let g:powerline_pycmd = 'py3'"); then
-    echo "powerline-vim already set to use Python3."
-else
-    echo "setting powerline-vim to use Python3."
-    echo "let g:powerline_pycmd = 'py3'" | sudo tee -a /etc/vimrc \
-        > /dev/null 2>&1
-fi
-
-if $(pip show pynvim > /dev/null 2>&1); then
-    echo "PyNvim installed for Python 3..."
-else
-    sudo pip install pynvim
-fi
-
 sudo -H pip install --upgrade youtube-dl
 
-mkdir ~/music > /dev/null 2>&1
-
-sudo npm install -g neovim
-
-if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
-    echo "Extra packages already installed."
-else
-    yay -S --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu ttf-unifont chromium-widevine spotify ffmpeg-compat-57 zenity skypeforlinux-stable-bin
-fi
-
-yay -S --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu perl-anyevent-i3 sol2-git mongodb-bin mongodb-tools-bin
+print_green "ALL INSTALLS COMPLETED!"
 
 # yay --noconfirm --nocleanmenu --nodiffmenu --noeditmenu --noupgrademenu
-
