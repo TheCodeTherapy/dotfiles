@@ -195,6 +195,10 @@ bar {
 }
 
 assign [class="Slack"] $ws4
+assign [class="discord"] $ws4
+assign [class="skype"] $ws4
+assign [class="Skype"] $ws4
+
 
 exec --no-startup-id /usr/bin/compton --config ~/dotfiles/compton/compton.conf
 exec --no-startup-id $HOME/dotfiles/polybar/launch.sh
