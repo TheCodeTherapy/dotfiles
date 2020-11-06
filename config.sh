@@ -104,6 +104,16 @@ install_basic_packages () {
         xf86-video-intel nvidia mesa peek broot xawtv mpv ttf-fira-code
 }
 
+configure_xorg () {
+    msg="CONFIGURING XORG ..."
+    print_yellow "${msg}"
+    sleep 1
+    sudo cp ${DOTDIR}/x/xorg.conf /etc/X11/xorg.conf
+    sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
+        < /usr/share/X11/locale/en_US.UTF-8/Compose \
+        > $ME/dotfiles/x/XCompose
+}
+
 link_dotfiles () {
     msg="LINKING DOTFILES ..."
     print_yellow "${msg}"
@@ -127,7 +137,6 @@ link_dotfiles () {
     home_link_cfg "ncmpcpp"
     home_link_cfg "dunst"
     home_link_cfg "polybar"
-    sudo cp ${DOTDIR}/x/xorg.conf /etc/X11/xorg.conf
 }
 
 mlocate_update () {
@@ -233,6 +242,7 @@ configure_mpd () {
         print_green "${msg}"
     else
         mkdir $ME/.mpd
+        mkdir -p $ME/music/.mpd/lyrics
         msg="$ME/.mpd directory created"
         print_yellow "${msg}"
         sudo systemctl enable mpd.service
@@ -272,6 +282,7 @@ setup_fonts () {
 
 update_system
 install_basic_packages
+configure_xorg
 link_dotfiles
 mlocate_update
 install_yay
@@ -323,11 +334,6 @@ sudo -H pip install --upgrade youtube-dl
 
 mkdir ~/music > /dev/null 2>&1
 
-sed -e 's,\xc4\x86,\xc3\x87,g' -e 's,\xc4\x87,\xc3\xa7,g' \
-    < /usr/share/X11/locale/en_US.UTF-8/Compose \
-    > $ME/dotfiles/x/XCompose
-
-sudo npm install -g npm
 sudo npm install -g neovim
 
 if $(locate skypeforlinux | grep /usr/bin > /dev/null 2>&1); then
