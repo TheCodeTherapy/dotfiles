@@ -165,20 +165,20 @@ client.urgent           #303030 #904848 #FFFFFF #904848   #904848
 client.placeholder      #303030 #304848 #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
 
-bar {
-    colors {
-        background #000000
-        statusline #FFFFFF
-        separator  #666666
-
-        focused_workspace  #C0C0D8 #77AAff #000000
-        active_workspace   #303030 #212121 #FFFFFF
-        inactive_workspace #303030 #212121 #777777
-        urgent_workspace   #303030 #904848 #FFFFFF
-        binding_mode       #303030 #904848 #FFFFFF
-    }
-    status_command i3status -c ~/.config/i3status/config
-}
+#bar {
+#    colors {
+#        background #000000
+#        statusline #FFFFFF
+#        separator  #666666
+#
+#        focused_workspace  #C0C0D8 #77AAff #000000
+#        active_workspace   #303030 #212121 #FFFFFF
+#        inactive_workspace #303030 #212121 #777777
+#        urgent_workspace   #303030 #904848 #FFFFFF
+#        binding_mode       #303030 #904848 #FFFFFF
+#    }
+#    status_command i3status -c ~/.config/i3status/config
+#}
 
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
