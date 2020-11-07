@@ -293,6 +293,17 @@ install_neovim_deps () {
     sudo npm install -g neovim
 }
 
+install_pulseaudio_control () {
+    msg="INSTALLING PULSEAUDIO-CONTROL ..."
+    print_yellow "${msg}"
+    sleep 1
+    if [[ -f /usr/bin/pulseaudio-control ]]; then
+        print_green "pulseaudio-control already installed."
+    else
+        yay -S pulseaudio-control
+    fi
+}
+
 configure_mpd () {
     msg="SETTING UP MPD ..."
     print_yellow "${msg}"
@@ -355,6 +366,7 @@ yay_installs
 install_extras
 install_slack
 install_neovim_deps
+install_pulseaudio_control
 configure_mpd
 configure_broot
 setup_fonts
