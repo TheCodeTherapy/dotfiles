@@ -8,7 +8,7 @@
 #a8c0a8
 #f0f0d8
 #609078
-#90a890
+#9090a8
 #78a878
 #181818
 # ============================================================================
@@ -158,9 +158,9 @@ mode "resize" {
 bindsym $sup+r mode "resize"
 
 # class                 border  bground text    indicator child_border
-client.focused          #303030 #304848 #FFFFFF #FFFFFF   #77AAff
-client.focused_inactive #303030 #304848 #A8C0A8 #484E50   #5F676A
-client.unfocused        #303030 #304848 #C0D8C0 #292D2E   #222222
+client.focused          #303030 #77AAFF #000000 #FFFFFF   #77AAff
+client.focused_inactive #303030 #4477AA #000000 #484E50   #5F676A
+client.unfocused        #303030 #404040 #AAAAAA #292D2E   #222222
 client.urgent           #303030 #904848 #FFFFFF #904848   #904848
 client.placeholder      #303030 #304848 #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF

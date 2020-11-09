@@ -101,7 +101,10 @@ install_basic_packages () {
         xorg-xwininfo noto-fonts noto-fonts-emoji noto-fonts-extra \
         libreoffice-fresh ntp perl-json-xs imagemagick xfce4-screenshooter \
         obs-studio sdl2 sdl2_image sdl2_ttf sdl2_mixer sdl2_gfx lua \
-        xf86-video-intel nvidia mesa peek broot xawtv mpv ttf-fira-code
+        xf86-video-intel nvidia mesa peek broot xawtv mpv ttf-fira-code \
+        gcc make cmake sdl2 git zlib bzip2 libjpeg-turbo fluidsynth libgme \
+        openal mpg123 libsndfile gtk3 timidity++ nasm mesa glu tar sdl glew \
+        yarn
 }
 
 configure_xorg () {
