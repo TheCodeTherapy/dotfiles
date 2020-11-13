@@ -131,6 +131,7 @@ link_dotfiles () {
     home_link "x/XResources" ".XResources"
     home_link "x/XCompose" ".XCompose"
     home_link "tmux/tmux.conf" ".tmux.conf"
+    home_link "tmux/tmux.conf.local" ".tmux.conf.local"
     home_link_cfg "i3"
     home_link_cfg "i3status"
     home_link_cfg "alacritty"
