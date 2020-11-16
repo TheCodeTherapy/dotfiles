@@ -142,7 +142,7 @@ link_dotfiles () {
     home_link_cfg "ncmpcpp"
     home_link_cfg "dunst"
     home_link_cfg "polybar"
-    cp $DOTFILES/gnupg/gpg.conf $ME/.gnupg/.
+    cp $DOTDIR/gnupg/gpg.conf $ME/.gnupg/.
     mkdir -p $ME/.local/bin
 }
 
