@@ -1,0 +1,3 @@
+#!/bin/bash
+npm info $1 | grep latest
+
