@@ -24,8 +24,8 @@ for_window [title="video0 - mpv"] sticky enable
 for_window [class="Xawtv"] floating enable
 for_window [class="Xawtv"] sticky enable
 
-gaps inner 7
-gaps outer 7
+gaps inner 12
+gaps outer 5
 
 # Mouse+$sup to drag floating windows
 floating_modifier $sup
