@@ -18,14 +18,14 @@ set $sup Mod1
 
 font pango:Fira Code, Misc Termsyn, Wuncon Siji 12
 
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 for_window [title="video0 - mpv"] floating enable
 for_window [title="video0 - mpv"] sticky enable
 for_window [class="Xawtv"] floating enable
 for_window [class="Xawtv"] sticky enable
 
-gaps inner 12
-gaps outer 5
+gaps inner 17
+gaps outer 0
 
 # Mouse+$sup to drag floating windows
 floating_modifier $sup

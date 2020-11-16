@@ -104,7 +104,7 @@ install_basic_packages () {
         xf86-video-intel nvidia mesa peek broot xawtv mpv ttf-fira-code \
         gcc make cmake sdl2 git zlib bzip2 libjpeg-turbo fluidsynth libgme \
         openal mpg123 libsndfile gtk3 timidity++ nasm mesa glu tar sdl glew \
-        yarn
+        yarn lolcat
 }
 
 configure_xorg () {

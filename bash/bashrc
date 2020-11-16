@@ -16,7 +16,6 @@ PROMPT_COMMAND='history -a'
 
 export PAGER="most"
 
-alias ls='exa'
 alias ll='exa -hlg --git'
 alias la='exa -hlga --git'
 alias vim='nvim'
@@ -43,7 +42,6 @@ fi
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
 #    exec tmux -2
 #fi
-neofetch
-
+neofetch | lolcat
 
 source /home/marcogomez/.config/broot/launcher/bash/br
