@@ -198,3 +198,5 @@ exec --no-startup-id nm-applet
 # exec --no-startup-id optimus-manager-qt
 bindsym Print exec --no-startup-id xfce4-screenshooter
 bindsym --release $sup+x exec --no-startup-id import /tmp/latest-screenshot.png
+bindsym --release $sup+Shift+c exec /home/marcogomez/dotfiles/shellscripts/webcamw
+

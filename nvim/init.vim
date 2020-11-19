@@ -1,15 +1,15 @@
 " Set paths for python versions ==============================================
-let g:python_host_prog='/usr/bin/python2'
+" let g:python_host_prog='/usr/bin/python2'
 let g:python3_host_prog='/usr/bin/python3'
 "=============================================================================
 
 " Defining tab thingie =======================================================
 filetype plugin indent on
 " show existing tab with 4 spaces width ======================================
-set tabstop=4
+set tabstop=2
 " when indenting with '>', use 4 spaces width ================================
-set shiftwidth=4
-" on pressing tab, insert 4 spaces ===========================================
+set shiftwidth=2
+" on pressing tab, insert 2 spaces ===========================================
 set expandtab
 " ============================================================================
 
@@ -25,8 +25,31 @@ set listchars=eol:⏎,tab:>· list
 " set nolist
 "=============================================================================
 
+" AutoInstall vim-plug ================================================
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  "autocmd VimEnter * PlugInstall
+  "autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+"======================================================================
+
 " Plug thingies ==============================================================
 call plug#begin('~/.config/nvim/plugged')
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
 " Functionalities ============================================================
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
@@ -34,46 +57,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'mboughaba/i3config.vim'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 " Powerline ==================================================================
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Completion =================================================================
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-vim'
-Plug 'shougo/neco-vim'
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-syntax'
-Plug 'Shougo/neco-syntax'
-Plug 'ncm2/ncm2-markdown-subscope'
-Plug 'ncm2/ncm2-html-subscope'
-Plug 'ncm2/ncm2-match-highlight'
-Plug 'fgrsnau/ncm2-aspell'
+
 " Snippets ===================================================================
 Plug 'ncm2/ncm2-neosnippet'
 " Text Editing ===============================================================
 Plug 'jiangmiao/auto-pairs'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'lilydjwg/colorizer'
-Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
