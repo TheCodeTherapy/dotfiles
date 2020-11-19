@@ -37,19 +37,6 @@ endif
 " Plug thingies ==============================================================
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
-
 " Functionalities ============================================================
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
@@ -63,7 +50,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Completion =================================================================
 
 " Snippets ===================================================================
-Plug 'ncm2/ncm2-neosnippet'
 " Text Editing ===============================================================
 Plug 'jiangmiao/auto-pairs'
 Plug 'bronson/vim-trailing-whitespace'
@@ -167,9 +153,5 @@ nnoremap <C-Right> :tabnext<CR>
 inoremap <leader>t <esc>:tabnext<CR>
 nnoremap <leader>t :tabnext<CR>
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-set shortmess+=c
 inoremap <c-c> <ESC>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
