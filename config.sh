@@ -105,7 +105,8 @@ install_basic_packages () {
         gcc make cmake sdl2 git zlib bzip2 libjpeg-turbo fluidsynth libgme \
         openal mpg123 libsndfile gtk3 timidity++ nasm mesa glu tar sdl glew \
         yarn lolcat ttf-roboto adapta-gtk-theme lxappearance \
-        gtk-engine-murrine vice gimp arc-solid-gtk-theme adwaita-icon-theme
+        gtk-engine-murrine vice gimp arc-solid-gtk-theme adwaita-icon-theme \
+        qt5ct kdenlive
 }
 
 configure_xorg () {
