@@ -16,8 +16,8 @@ PROMPT_COMMAND='history -a'
 
 export PAGER="most"
 
-alias ll='exa -hlg --git'
-alias la='exa -hlga --git'
+alias ll='exa -hlgH --git'
+alias la='exa -hlgaH --git'
 alias vim='nvim'
 alias tmux='tmux -2'
 alias bat='PAGER="less -R" bat'

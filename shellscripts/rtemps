@@ -1,0 +1,5 @@
+#!/bin/bash
+ME="/home/$(whoami)"
+DOTDIR="$ME/dotfiles"
+readtemps | rofi -dmenu -theme ${DOTDIR}/rofi/sp.theme
+
