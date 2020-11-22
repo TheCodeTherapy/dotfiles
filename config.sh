@@ -106,7 +106,7 @@ install_basic_packages () {
         openal mpg123 libsndfile gtk3 timidity++ nasm mesa glu tar sdl glew \
         yarn lolcat ttf-roboto adapta-gtk-theme lxappearance \
         gtk-engine-murrine vice gimp arc-solid-gtk-theme adwaita-icon-theme \
-        qt5ct kdenlive
+        qt5ct kdenlive man-pages man-db
 }
 
 configure_xorg () {
