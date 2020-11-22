@@ -134,6 +134,7 @@ link_dotfiles () {
     home_link "x/XCompose" ".XCompose"
     home_link "tmux/tmux.conf" ".tmux.conf"
     home_link "tmux/tmux.conf.local" ".tmux.conf.local"
+    home_link_cfg "picom"
     home_link_cfg "i3"
     home_link_cfg "i3status"
     home_link_cfg "alacritty"
@@ -237,7 +238,8 @@ install_with_yay () {
 
 yay_installs () {
     install_with_yay "pamac" "pamac"
-    install_with_yay "compton-tryone-git" "compton"
+    # install_with_yay "compton-tryone-git" "compton"
+    install_with_yay "picom-tryone-git" "picom"
     install_with_yay "polybar" "polybar"
     install_with_yay "rofi-greenclip" "greenclip"
 }

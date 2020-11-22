@@ -187,7 +187,8 @@ assign [class="Skype"] $ws4
 assign [class="code-oss"] $ws2
 
 
-exec --no-startup-id /usr/bin/compton --config ~/dotfiles/compton/compton.conf
+# exec --no-startup-id /usr/bin/compton --config ~/dotfiles/compton/compton.conf
+exec --no-startup-id picom --experimental-backends --config ~/dotfiles/picom/picom.conf
 exec --no-startup-id $HOME/dotfiles/polybar/launch.sh
 exec --no-startup-id greenclip daemon
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
