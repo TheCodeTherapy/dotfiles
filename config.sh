@@ -359,10 +359,21 @@ setup_fonts () {
     fc-cache -fv
 }
 
+install_es_dependencies () {
+    msg="INSTALLING EMULATIONSTATION DEPENDENCIES ..."
+    print_yellow "${msg}"
+    sleep 1
+    sudo pacman -S --needed alsa-lib boost-libs curl freeimage libcec \
+        libraw pugixml rapidjson sdl2 vlc boost cmake eigen freetype2 \
+        dolphin-emu dolphin-plugins mednafen mupen64plus stella \
+        ttf-droid
+}
+
 update_system
 install_basic_packages
 configure_xorg
 link_dotfiles
+install_es_dependencies
 mlocate_update
 install_yay
 configure_ntpd
